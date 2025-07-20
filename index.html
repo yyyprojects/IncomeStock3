@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is an Income Stock? An Infographic</title>
+    <!-- Chosen Palette: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C) -->
+    <!-- Application Structure Plan: The infographic is structured as a linear, scroll-based narrative, guiding the user from basic concepts to more advanced topics. Sections are clearly defined (Basics, Dividends, Comparison, Finding, Risks, Taxes). This sequential flow is optimal for a beginner audience, ensuring foundational knowledge is built before introducing complexity. Interactive elements like the yield calculator and tax chart are embedded directly within their explanatory context to make abstract concepts tangible. A sticky nav offers quick access, but the primary design encourages a top-to-bottom learning journey. This educational approach was chosen over a dashboard layout, which is better suited for data exploration by experts rather than learning by novices. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Core concept -> Goal: Inform -> Viz/Presentation: Large text, styled callouts (HTML/CSS) -> Justification: Emphasizes key takeaways for beginners. Method: HTML/CSS.
+        - Report Info: Dividend Yield Formula -> Goal: Inform/Engage -> Viz/Presentation: Interactive Calculator -> Interaction: User inputs data to see live calculation -> Justification: Turns a static formula into a practical, hands-on tool. Method: HTML/JS.
+        - Report Info: Income vs. Growth Stocks -> Goal: Compare -> Viz/Presentation: Bar Chart -> Interaction: Buttons toggle between 'Yield' and 'Growth' views -> Justification: A simple, powerful visual contrast of the two stock types' core trade-offs. Method: Chart.js/Canvas.
+        - Report Info: Common Sectors -> Goal: Organize -> Viz/Presentation: Interactive Cards -> Interaction: Click reveals details -> Justification: Presents categorical info cleanly without initial clutter. Method: HTML/CSS/JS.
+        - Report Info: Investment Risks -> Goal: Organize/Inform -> Viz/Presentation: Accordion List -> Interaction: Click expands/collapses risk details -> Justification: Breaks down important warnings into digestible, on-demand snippets. Method: HTML/CSS/JS.
+        - Report Info: US Dividend Tax Rates -> Goal: Inform -> Viz/Presentation: Interactive Bar Chart -> Interaction: Dropdown filters chart by filing status -> Justification: Simplifies complex tax data, making it personally relevant and easy to compare rates. Method: Chart.js/Canvas.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (max-width: 640px) { .chart-container { height: 300px; } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-800 mb-2">What Is an Income Stock?</h1>
+            <p class="text-lg text-slate-600">An Infographic Guide for Beginners in the USA</p>
+        </header>
+
+        <nav class="sticky top-0 z-10 bg-slate-50/80 backdrop-blur-sm shadow-md rounded-lg mb-12">
+            <div class="mx-auto px-4">
+                <div class="flex items-center justify-center h-16">
+                    <div class="hidden md:flex space-x-4">
+                        <a href="#basics" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">The Basics</a>
+                        <a href="#dividends" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Dividends</a>
+                        <a href="#comparison" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Income vs. Growth</a>
+                        <a href="#finding" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Finding Them</a>
+                        <a href="#risks" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">The Risks</a>
+                        <a href="#taxes" class="text-slate-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Taxes</a>
+                    </div>
+                    <div class="md:hidden">
+                        <select id="mobile-nav" class="bg-white border border-slate-300 rounded-md py-2 px-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="#basics">The Basics</option>
+                            <option value="#dividends">Dividends</option>
+                            <option value="#comparison">Income vs. Growth</option>
+                            <option value="#finding">Finding Them</option>
+                            <option value="#risks">The Risks</option>
+                            <option value="#taxes">Taxes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="space-y-16">
+
+            <section id="basics" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">The Basics: Investing for a Paycheck</h2>
+                <p class="text-slate-600 mb-6">This section explains the simple idea behind income stocks. Instead of buying a stock hoping its price will soar for a one-time profit, income investing is about receiving regular cash payments, much like collecting rent from a property.</p>
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="prose max-w-none">
+                        <h3>What is an "Income Stock"?</h3>
+                        <p>Imagine a company is a pizza. Buying a stock means you own a slice. An income stock is a special slice that gives you a few "pepperonis" (cash payments called <span class="font-bold text-yellow-600">dividends</span>) every few months. These companies are usually mature and profitable, so they share their earnings directly with owners like you.</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-lg flex items-center gap-4 border-l-4 border-blue-500">
+                        <span class="text-5xl">🎯</span>
+                        <div>
+                            <h4 class="font-bold text-lg">The Main Goal: A Steady Income Stream</h4>
+                            <p class="text-slate-700">The primary purpose is to generate regular cash flow. This provides a predictable income source, which is different from growth stocks where the goal is purely price appreciation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="dividends" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Dividends & Yield: The Key Numbers</h2>
+                <p class="text-slate-600 mb-6">Dividends are the engine of income investing. The "dividend yield" is a percentage that shows how much income you get for the price you pay. Use our calculator to see how a stock's price and dividend payment combine to create its yield.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="prose max-w-none">
+                        <h3>What is Dividend Yield?</h3>
+                        <p>This simple percentage helps you compare the income potential of different stocks. A higher yield means more income per dollar you invest. The formula is:</p>
+                        <p class="text-center font-mono bg-slate-200 p-2 rounded">(Annual Dividend / Price per Share) x 100</p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg shadow-md">
+                        <h3 class="text-2xl font-semibold text-yellow-800 mb-4">Interactive Yield Calculator</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                            <div>
+                                <label for="stock-price" class="block text-sm font-medium text-slate-700">Stock Price ($)</label>
+                                <input type="number" id="stock-price" value="100" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            </div>
+                            <div>
+                                <label for="annual-dividend" class="block text-sm font-medium text-slate-700">Annual Dividend ($)</label>
+                                <input type="number" id="annual-dividend" value="3.5" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            </div>
+                            <div class="bg-white p-4 rounded-lg text-center">
+                                <p class="text-sm font-medium text-slate-700">Dividend Yield</p>
+                                <p id="yield-result" class="text-3xl font-bold text-green-600">3.50%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Income Stocks vs. Growth Stocks</h2>
+                <p class="text-slate-600 mb-6">Investing involves a trade-off between receiving income now (dividends) and aiming for higher price growth later. This chart visually compares the two strategies. Toggle the view to see how they typically differ.</p>
+                
+                <div class="text-center mb-6">
+                    <button id="show-yield-btn" class="bg-blue-600 text-white px-4 py-2 rounded-l-lg font-medium shadow-md">Compare Dividend Yield</button>
+                    <button id="show-growth-btn" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-r-lg font-medium">Compare Growth Potential</button>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </section>
+
+            <section id="finding" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Where to Find Income Stocks</h2>
+                <p class="text-slate-600 mb-6">Income stocks tend to be mature, stable companies found in specific industries. Click the cards below to learn about common sectors. We'll also introduce the "royalty" of the dividend world—companies with decades of reliable payments.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="sector-card bg-slate-100 p-4 rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-100 transition-all">
+                        <h4 class="font-bold text-lg text-blue-900">🔌 Utilities</h4>
+                        <p class="description hidden text-sm mt-2 text-slate-700">Companies providing electricity, gas, and water. Demand is constant, leading to stable cash flow for dividends.</p>
+                    </div>
+                    <div class="sector-card bg-slate-100 p-4 rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-100 transition-all">
+                        <h4 class="font-bold text-lg text-blue-900">🛒 Consumer Staples</h4>
+                        <p class="description hidden text-sm mt-2 text-slate-700">Firms selling essentials like food and household goods. Their products are always in demand.</p>
+                    </div>
+                    <div class="sector-card bg-slate-100 p-4 rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-100 transition-all">
+                        <h4 class="font-bold text-lg text-blue-900">🏢 Real Estate (REITs)</h4>
+                        <p class="description hidden text-sm mt-2 text-slate-700">Trusts that own properties (apartments, offices). By law, they must pay out most income as dividends.</p>
+                    </div>
+                    <div class="sector-card bg-slate-100 p-4 rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-100 transition-all">
+                        <h4 class="font-bold text-lg text-blue-900">🏦 Financials</h4>
+                        <p class="description hidden text-sm mt-2 text-slate-700">Established banks and insurance companies with long histories of sharing profits.</p>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none">
+                    <h3>The Royalty of Dividends</h3>
+                    <ul class="list-disc pl-5">
+                        <li><strong>Dividend Aristocrats:</strong> S&P 500 companies that have <span class="font-bold">increased</span> their dividend every year for at least 25 consecutive years.</li>
+                        <li><strong>Dividend Kings:</strong> An even more elite group that has increased dividends for an incredible 50+ consecutive years.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="risks" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Understanding the Risks</h2>
+                <p class="text-slate-600 mb-6">No investment is risk-free. While generally safer, income stocks have unique challenges. Click each risk below to see what you should watch out for.</p>
+                <div class="space-y-4">
+                    <div class="risk-item border border-slate-200 rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-semibold text-slate-700 hover:bg-slate-100">
+                            <span>📉 Dividend Cuts</span>
+                            <span class="arrow text-blue-500 transform transition-transform">▼</span>
+                        </button>
+                        <div class="risk-description hidden p-4 border-t border-slate-200 text-slate-600 bg-slate-50">
+                            Dividends aren't guaranteed. A company facing financial trouble might reduce or cut its dividend to save cash, which usually causes the stock price to fall.
+                        </div>
+                    </div>
+                    <div class="risk-item border border-slate-200 rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-semibold text-slate-700 hover:bg-slate-100">
+                            <span>📈 Interest Rate Risk</span>
+                             <span class="arrow text-blue-500 transform transition-transform">▼</span>
+                        </button>
+                        <div class="risk-description hidden p-4 border-t border-slate-200 text-slate-600 bg-slate-50">
+                            When interest rates rise on safer investments like government bonds, the income from those options becomes more attractive. This can make dividend stocks look less appealing, potentially causing their prices to fall.
+                        </div>
+                    </div>
+                     <div class="risk-item border border-slate-200 rounded-lg shadow-sm">
+                        <button class="w-full text-left p-4 flex justify-between items-center font-semibold text-slate-700 hover:bg-slate-100">
+                            <span>⚠️ The "Yield Trap"</span>
+                             <span class="arrow text-blue-500 transform transition-transform">▼</span>
+                        </button>
+                        <div class="risk-description hidden p-4 border-t border-slate-200 text-slate-600 bg-slate-50">
+                           Be wary of an unusually high dividend yield! It can be a warning sign that the stock's price has fallen sharply due to business problems. You might be lured by the high yield, only to face a dividend cut and a capital loss.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="taxes" class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">How Dividends Are Taxed in the USA</h2>
+                <p class="text-slate-600 mb-6">Dividend income is taxable. The good news is that most dividends from US stocks are "qualified" and taxed at lower rates than your salary. Use the interactive chart to see the 2024 tax rates based on your filing status and income.</p>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">Interactive 2024 Qualified Dividend Tax Rates</h3>
+                    <div class="mb-4">
+                        <label for="filing-status" class="block text-sm font-medium text-slate-700">Select Your Filing Status:</label>
+                        <select id="filing-status" class="mt-1 block w-full md:w-1/2 rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="single">Single</option>
+                            <option value="jointly">Married Filing Jointly</option>
+                            <option value="hoh">Head of Household</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="taxChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-slate-500 mt-2">This is for informational purposes only. Consult a tax professional for advice.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-slate-300">
+            <p class="text-slate-500">This infographic is for educational purposes and is not financial advice. All investing involves risk.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', (e) => {
+                const section = document.querySelector(e.target.value);
+                if(section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            const stockPriceInput = document.getElementById('stock-price');
+            const annualDividendInput = document.getElementById('annual-dividend');
+            const yieldResult = document.getElementById('yield-result');
+
+            function calculateYield() {
+                const price = parseFloat(stockPriceInput.value);
+                const dividend = parseFloat(annualDividendInput.value);
+                if (price > 0 && dividend >= 0) {
+                    const yieldValue = (dividend / price) * 100;
+                    yieldResult.textContent = yieldValue.toFixed(2) + '%';
+                } else {
+                    yieldResult.textContent = 'N/A';
+                }
+            }
+
+            stockPriceInput.addEventListener('input', calculateYield);
+            annualDividendInput.addEventListener('input', calculateYield);
+            calculateYield();
+
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) { return str; }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines.filter(line => line.length > 0);
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                }
+                return label;
+            };
+
+            const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+            let comparisonChart;
+            
+            const yieldData = {
+                labels: ['Typical Income Stock', 'Typical Growth Stock'],
+                datasets: [{
+                    label: 'Average Dividend Yield',
+                    data: [3.5, 0.5],
+                    backgroundColor: ['#118AB2', '#FFD166'],
+                    borderWidth: 0
+                }]
+            };
+
+            const growthData = {
+                labels: ['Typical Income Stock', 'Typical Growth Stock'],
+                datasets: [{
+                    label: 'Potential for Price Growth',
+                    data: [3, 9],
+                    backgroundColor: ['#118AB2', '#FFD166'],
+                    borderWidth: 0
+                }]
+            };
+            
+            const comparisonChartOptions = (titleText, yMax) => ({
+                scales: {
+                    y: { beginAtZero: true, max: yMax, grid: { color: '#e2e8f0' } },
+                    x: { grid: { display: false } }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: titleText, font: { size: 16 }, color: '#0f172a' },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            });
+
+            function createComparisonChart(data, title, max) {
+                if (comparisonChart) { comparisonChart.destroy(); }
+                comparisonChart = new Chart(comparisonCtx, {
+                    type: 'bar',
+                    data: data,
+                    options: comparisonChartOptions(title, max)
+                });
+            }
+
+            const showYieldBtn = document.getElementById('show-yield-btn');
+            const showGrowthBtn = document.getElementById('show-growth-btn');
+
+            showYieldBtn.addEventListener('click', () => {
+                createComparisonChart(yieldData, 'Average Dividend Yield (%)', 5);
+                showYieldBtn.classList.replace('bg-slate-200', 'bg-blue-600');
+                showYieldBtn.classList.replace('text-slate-700', 'text-white');
+                showGrowthBtn.classList.replace('bg-blue-600', 'bg-slate-200');
+                showGrowthBtn.classList.replace('text-white', 'text-slate-700');
+            });
+
+            showGrowthBtn.addEventListener('click', () => {
+                createComparisonChart(growthData, 'Potential for Price Growth (out of 10)', 10);
+                showGrowthBtn.classList.replace('bg-slate-200', 'bg-blue-600');
+                showGrowthBtn.classList.replace('text-slate-700', 'text-white');
+                showYieldBtn.classList.replace('bg-blue-600', 'bg-slate-200');
+                showYieldBtn.classList.replace('text-white', 'text-slate-700');
+            });
+            
+            createComparisonChart(yieldData, 'Average Dividend Yield (%)', 5);
+
+            document.querySelectorAll('.sector-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.querySelector('.description').classList.toggle('hidden');
+                });
+            });
+
+            document.querySelectorAll('.risk-item button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const description = button.nextElementSibling;
+                    const arrow = button.querySelector('.arrow');
+                    const isHidden = description.classList.contains('hidden');
+                    document.querySelectorAll('.risk-description').forEach(d => d.classList.add('hidden'));
+                    document.querySelectorAll('.risk-item .arrow').forEach(a => a.classList.remove('rotate-180'));
+                    if (isHidden) {
+                        description.classList.remove('hidden');
+                        arrow.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            const taxCtx = document.getElementById('taxChart').getContext('2d');
+            let taxChart;
+            const taxData = {
+                single: { labels: ['Up to $47,025', '$47,026 to $518,900', 'Over $518,900'] },
+                jointly: { labels: ['Up to $94,050', '$94,051 to $583,750', 'Over $583,750'] },
+                hoh: { labels: ['Up to $63,000', '$63,001 to $551,350', 'Over $551,350'] }
+            };
+            
+            function createTaxChart(status) {
+                if (taxChart) { taxChart.destroy(); }
+                const data = taxData[status];
+                const wrappedLabels = data.labels.map(label => wrapLabel(label, 16));
+
+                taxChart = new Chart(taxCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: wrappedLabels,
+                        datasets: [{
+                            label: 'Tax Rate',
+                            data: [0, 15, 20],
+                            backgroundColor: ['#06D6A0', '#FFD166', '#FF6B6B'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { beginAtZero: true, max: 25, ticks: { callback: value => value + '%' }, grid: { color: '#dbeafe' } },
+                            y: { grid: { display: false } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true, text: 'Qualified Dividend Tax Rate by Income', font: { size: 16 }, color: '#0f172a' },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback,
+                                    label: context => `Tax Rate: ${context.raw}%`
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            document.getElementById('filing-status').addEventListener('change', (e) => createTaxChart(e.target.value));
+            createTaxChart('single');
+        });
+    </script>
+</body>
+</html>
+```
+
